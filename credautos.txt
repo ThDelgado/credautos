@@ -1,0 +1,49 @@
+CREATE TABLE  empresas(
+    rut VARCHAR(12)PRIMARY KEY,
+    nombre VARCHAR(150) NOT NULL,
+    direccion VARCHAR(200) NOT NULL,
+    telefono VARCHAR(9) NOT NULL,
+    correo VARCHAR(70) NOT NULL,
+    web VARCHAR(70) NOT NULL
+);
+
+
+CREATE TABLE clientes(
+    rut VARCHAR(12) PRIMARY KEY, 
+	run VARCHAR(12) REFERENCES empresas(rut) NOT NULL UNIQUE,
+    nombre VARCHAR(150),
+    direccion VARCHAR(150),
+    correo VARCHAR(70),
+    telefono VARCHAR(9),
+    activo BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE ventas(
+    folio SERIAL PRIMARY KEY,
+    run VARCHAR(12) REFERENCES clientes(rut),
+    fecha DATE NOT NULL,
+    monto DECIMAL(10,2) NOT NULL
+);
+
+CREATE TABLE mantenciones (
+    idMantencion SERIAL PRIMARY KEY,
+    folio INTEGER REFERENCES ventas(folio),
+    fecha DATE NOT NULL,
+    trabajosRealizados VARCHAR(300) NOT NULL,
+    precio DECIMAL(10,2) NOT NULL
+);
+
+CREATE TABLE marcas(
+    idMarca SERIAL PRIMARY KEY,
+    nombre VARCHAR(70) NOT NULL
+);
+
+CREATE TABLE vehiculos(
+    idVehiculo SERIAL PRIMARY KEY,
+    idMarca INTEGER REFERENCES marcas(idMarca),
+	idMantencion INTEGER REFERENCES mantenciones(idMantencion),
+    patente VARCHAR(7) NOT NULL,
+    modelo VARCHAR(15) NOT NULL,
+    color VARCHAR(10) NOT NULL
+);
+
