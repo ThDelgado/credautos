@@ -1,10 +1,10 @@
 CUE: MODELO ENTIDAD RELACIÓN 
 DRILLING: CREDAUTOS 
 Evaluacion
-MSS2
+M5S2
 
 para clonar:.
-
+https://github.com/ThDelgado/credautos.git
 
 se consideran algunos cambios en el esquema
 
